@@ -1,12 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perception AI</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI Vantage Mind — Computer Vision & AI</title>
+  <meta name="description" content="Computer Vision + AI consulting. Detection, Tracking, Re-ID, 3D, and on-device optimization that ships."/>
+  <link rel="icon" href="/assets/favicon.ico"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      /* Premium light palette */
+      --cream:#faf6ee;      /* bg */
+      --ink:#1b1e26;        /* main text */
+      --muted:#667089;      /* secondary text */
+      --line:#e7e1d6;       /* dividers/cards */
+      --lav:#9b87f5;        /* soft lavender */
+      --purple:#6e4ae2;     /* brand purple */
+      --teal:#22d3ee;       /* brand teal */
+      --btn:#0f1a2b;        /* dark button text on gradient */
+      --max:1120px;
+      --rad:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(158,136,245,.12), transparent),
+        radial-gradient(900px 600px at 110% 10%, rgba(34,211,238,.10), transparent),
+        var(--cream);
+    }
+    a{color:var(--purple); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%; display:block}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:20;
+      background:rgba(250,246,238,.75); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 16px}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .logo{
+      width:20px; height:20px; border-radius:7px;
+      background:linear-gradient(45deg,var(--purple),var(--teal));
+      box-shadow:0 0 12px rgba(110,74,226,.3);
+    }
+    .menu{display:flex; gap:26px; flex-wrap:wrap}
+    .menu a{color:#3a4156}
+    .menu a.active{font-weight:700; color:var(--ink)}
+    .menu a.active::after{
+      content:""; display:block; height:2px; margin-top:8px; border-radius:2px;
+      background:linear-gradient(90deg,var(--purple),var(--teal));
+    }
+
+    /* Hero */
+    .hero{padding:96px 0 56px; text-align:center}
+    .eyebrow{
+      display:inline-block; margin-bottom:16px; padding:7px 14px;
+      font-size:13.5px; font-weight:600; color:#5a4fcf; letter-spacing:.2px;
+      border:1px solid #d9d1f8; border-radius:999px; background:#efeaffb3;
+    }
+    h1{
+      font-family:"Playfair Display", serif;
+      font-weight:700; font-size:clamp(36px,6.6vw,58px);
+      line-height:1.07; letter-spacing:-0.01em; margin:0 0 10px;
+    }
+    .sub{color:var(--muted); font-size:18px; max-width:760px; margin:12px auto 0}
+
+    .cta{margin-top:26px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:15px 20px; font-weight:700; border-radius:14px; border:1px solid var(--line);
+      color:var(--ink); background:white; transition:transform .15s ease, filter .15s ease;
+      box-shadow:0 1px 0 rgba(0,0,0,.04), 0 10px 22px rgba(0,0,0,.05);
+    }
+    .btn.primary{
+      border:none; color:var(--btn);
+      background:linear-gradient(90deg,var(--purple),var(--teal));
+      box-shadow:0 10px 24px rgba(110,74,226,.20),0 8px 18px rgba(34,211,238,.15);
+    }
+    .btn:active{transform:scale(.99)}
+
+    /* KPI */
+    .kpi{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px}
+    .tile{
+      background:white; border:1px solid var(--line); border-radius:12px; text-align:center; padding:14px 16px;
+      box-shadow:0 1px 0 rgba(0,0,0,.04);
+    }
+    .num{font-weight:800; font-size:22px}
+    .muted{color:var(--muted); font-size:12px}
+
+    /* Sections */
+    section{padding:48px 0}
+    h2{
+      font-family:"Playfair Display", serif; font-weight:700;
+      font-size:clamp(24px,3.2vw,30px); margin:0 0 8px; letter-spacing:.1px;
+    }
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{
+      background:white; border:1px solid var(--line); border-radius:16px; padding:18px;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
+    }
+    .card h3{margin:0 0 8px}
+    .tag{color:#7a86a7; font-size:12px}
+    .shot{
+      width:100%; height:220px; object-fit:cover; border-radius:12px;
+      border:1px solid #e6e0d6; margin-bottom:10px;
+    }
+
+    /* Articles simpler */
+    #articles .grid{grid-template-columns:1fr}
+    @media (min-width:900px){ #articles .grid{grid-template-columns:1fr 1fr} }
+
+    footer{padding:28px 0; border-top:1px solid var(--line); color:#7a86a7}
+    .foot{display:flex; justify-content:center; gap:12px}
+
+    @media (max-width:520px){
+      .btn{width:100%}
+      .hero{padding:84px 0 44px}
+    }
+  </style>
+
+  <!-- Basic SEO schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"AI Vantage Mind",
+    "url":"https://aivantagemind.com",
+    "sameAs":[
+      "https://github.com/REPLACE_WITH_USERNAME",
+      "https://www.linkedin.com/in/REPLACE_WITH_LINKEDIN/"
+    ]
+  }
+  </script>
 </head>
 <body>
-    <h1>Welcome to Perception AI</h1>
-    <p>This is my hub for computer vision projects, AI articles, and freelance work.</p>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><span class="logo"></span> AI Vantage Mind</div>
+      <nav class="menu" id="nav">
+        <a href="#projects">Projects</a>
+        <a href="#articles">Articles</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <span class="eyebrow">Computer Vision • Deep Learning • MLOps</span>
+      <h1>Production-grade vision and AI, beautifully executed.</h1>
+      <p class="sub">Detection • Tracking • Re-ID • 3D • Optimization (TensorRT / TFLite). I design, train, and deploy systems that ship — to edge and cloud.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Work With Me</a>
+      </div>
+      <div class="kpi">
+        <div class="tile"><div class="num">10+</div><div class="muted">Years in CV/AI</div></div>
+        <div class="tile"><div class="num">25+</div><div class="muted">Models Deployed</div></div>
+        <div class="tile"><div class="num">∞</div><div class="muted">Curiosity</div></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <p class="muted">Problem → Approach → Result. Scannable, with links.</p>
+      <div class="grid" style="margin-top:12px">
+        <article class="card">
+          <img class="shot" src="/assets/demo-tracking.gif" alt="Demo: multi-person tracking"/>
+          <h3>Real-Time People Tracking</h3>
+          <p class="tag">DETR · GNN Association · Kalman</p>
+          <p>Occlusion-robust MOT running 60 FPS on Jetson. <a href="#">Case study</a> · <a href="#">GitHub</a></p>
+        </article>
+        <article class="card">
+          <img class="shot" src="/assets/demo-reid.gif" alt="Demo: vehicle re-identification"/>
+          <h3>Re-ID Across Cameras</h3>
+          <p class="tag">OSNet · Triplet/CE · Domain Adapt</p>
+          <p>Cross-camera consistency with hard mining + INT8 deployment. <a href="#">Article</a></p>
+        </article>
+        <article class="card">
+          <img class="shot" src="/assets/demo-3d.gif" alt="Demo: 3D pose & PnP"/>
+          <h3>3D Pose / PnP Toolkit</h3>
+          <p class="tag">EPnP · BA · Depth Priors</p>
+          <p>Fast, stable camera-pose estimation components. <a href="#">Docs</a> · <a href="#">GitHub</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ARTICLES -->
+    <section id="articles">
+      <h2>Latest Articles</h2>
+      <div class="grid" style="margin-top:12px">
+        <article class="card">
+          <h3><a href="#">Shipping 60 FPS Tracking: the exact steps</a></h3>
+          <p class="tag">MLOps • TensorRT • Benchmarking</p>
+          <p>What mattered (and what didn’t) from data → evaluation → deployment.</p>
+        </article>
+        <article class="card">
+          <h3><a href="#">Triplet vs Softmax for Re-ID in the Wild</a></h3>
+          <p class="tag">Re-ID • Losses • Domain Shift</p>
+          <p>Lessons from hard mining and augmentations that finally moved the needle.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2>Consulting & Services</h2>
+      <div class="grid" style="margin-top:12px">
+        <div class="card"><h3>Model Design & Training</h3><p>Custom detection, tracking, Re-ID, and segmentation tailored to your data and constraints.</p></div>
+        <div class="card"><h3>Optimization</h3><p>Quantization, pruning, TensorRT/TFLite/ONNXRuntime for edge or server with real benchmarks.</p></div>
+        <div class="card"><h3>Audits & Coaching</h3><p>Architecture reviews, experiment plans, and hands-on team mentoring.</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Get in touch</h2>
+      <div class="grid" style="margin-top:12px">
+        <div class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:hello@aivantagemind.com">hello@aivantagemind.com</a></p>
+        </div>
+        <div class="card">
+          <h3>Social</h3>
+          <p>
+            <a href="https://github.com/REPLACE_WITH_USERNAME" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://www.linkedin.com/in/REPLACE_WITH_LINKEDIN/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Calendly</h3>
+          <p><a href="#">Book a call</a> (optional)</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:14px">Reply within 24h • Available for freelance & consulting</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">© <span id="y"></span> AI Vantage Mind · <a href="#">Privacy</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Active nav on scroll
+    const sections=[...document.querySelectorAll('main section')];
+    const links=[...document.querySelectorAll('#nav a')];
+    const map=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+    const obs=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id=e.target.id; if(map[id]) map[id].classList.add('active');
+        }
+      });
+    },{rootMargin:'-40% 0px -55% 0px',threshold:[0,1]});
+    sections.forEach(s=>obs.observe(s));
+  </script>
 </body>
 </html>
