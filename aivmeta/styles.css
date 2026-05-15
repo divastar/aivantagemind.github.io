@@ -1,0 +1,72 @@
+:root {
+  --ink: #25111f;
+  --muted: #73546b;
+  --paper: #fff9f0;
+  --pink: #ff3ea5;
+  --orange: #ff9c2f;
+  --blue: #3d7cff;
+  --mint: #39e5b5;
+  --purple: #7a3cff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 62, 165, .2), transparent 18rem),
+    radial-gradient(circle at 92% 8%, rgba(61, 124, 255, .18), transparent 20rem),
+    var(--paper);
+  line-height: 1.55;
+}
+a { color: inherit; text-decoration: none; }
+.studio-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  padding: 1rem clamp(1rem, 4vw, 2rem);
+  background: rgba(255,249,240,.88);
+  border-bottom: 2px solid rgba(37,17,31,.08);
+  backdrop-filter: blur(14px);
+}
+.wordmark { font-weight: 950; font-size: 1.35rem; letter-spacing: -.05em; }
+.wordmark span { color: var(--pink); }
+nav { display: flex; gap: .85rem; flex-wrap: wrap; color: var(--muted); }
+.cover-story { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; min-height: 82vh; display: grid; gap: 2rem; align-items: center; padding: 3.5rem 0; }
+.label { text-transform: uppercase; letter-spacing: .16em; color: var(--purple); font-size: .74rem; font-weight: 900; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(3.1rem, 14vw, 8.4rem); line-height: .82; letter-spacing: -.095em; max-width: 920px; margin-bottom: 1.1rem; }
+.cover-copy p:not(.label), .drop-card p, .show-grid p { color: var(--muted); font-size: 1.05rem; }
+.video-stack { position: relative; min-height: 360px; }
+.video-card { position: absolute; display: grid; align-content: end; gap: .5rem; width: min(88vw, 330px); min-height: 210px; padding: 1.2rem; border: 3px solid var(--ink); border-radius: 1.4rem; box-shadow: 10px 10px 0 var(--ink); transform: rotate(-4deg); }
+.video-card span { width: max-content; background: rgba(255,255,255,.75); padding: .3rem .55rem; border-radius: 999px; font-weight: 900; }
+.video-card strong { font-size: 1.5rem; line-height: 1; }
+.video-card.hot { left: 0; top: 0; background: linear-gradient(135deg, var(--pink), var(--orange)); }
+.video-card.cool { right: 0; top: 72px; background: linear-gradient(135deg, var(--blue), var(--mint)); transform: rotate(5deg); }
+.video-card.warm { left: 12%; bottom: 0; background: linear-gradient(135deg, #ffe86a, var(--orange)); transform: rotate(-1deg); }
+.shows-section, .drops-section { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 4rem 0; }
+.section-heading { display: grid; gap: .5rem; margin-bottom: 1rem; }
+h2 { font-size: clamp(2.2rem, 7vw, 5.2rem); line-height: .9; letter-spacing: -.07em; }
+.show-grid { display: grid; gap: 1rem; }
+.show-grid article { background: white; border: 2px solid rgba(37,17,31,.12); border-radius: 1.4rem; padding: 1.2rem; }
+.show-number { width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: white; font-weight: 950; }
+.format-marquee { display: flex; overflow-x: auto; gap: .8rem; padding: 1.2rem max(1rem, calc((100vw - 1180px) / 2)); background: var(--ink); color: white; }
+.format-marquee span { flex: 0 0 auto; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: .7rem 1rem; font-weight: 900; }
+.drops-section { display: grid; gap: 1rem; }
+.drop-card { border-radius: 1.6rem; padding: 1.3rem; }
+.drop-card.feature { background: linear-gradient(135deg, rgba(255,62,165,.16), rgba(61,124,255,.14)); border: 2px solid rgba(37,17,31,.1); }
+.drop-card.checklist { background: var(--ink); color: white; }
+ul { margin: 0; padding-left: 1.2rem; color: #f9ddec; }
+footer { display: grid; gap: .6rem; text-align: center; padding: 2rem 1rem 3rem; background: #ffeff9; }
+footer a { color: var(--purple); font-weight: 950; }
+@media (min-width: 800px) {
+  .studio-nav { flex-direction: row; justify-content: space-between; align-items: center; }
+  .cover-story { grid-template-columns: 1.05fr .95fr; }
+  .section-heading, .drops-section { grid-template-columns: .85fr 1.15fr; align-items: start; }
+  .show-grid { grid-template-columns: repeat(3, 1fr); }
+  .drop-card { padding: 2rem; }
+}
